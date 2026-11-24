@@ -1,4 +1,4 @@
-import { Check, Copy, Printer, RotateCcw } from 'lucide-react';
+import { Check, Copy, Download, Printer, RotateCcw } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { CVEditorPanel } from './components/CVEditorPanel';
 import { CVPreviewSheet } from './components/CVPreviewSheet';
@@ -12,11 +12,22 @@ import {
   saveCertFile,
   StoredCertFile,
 } from './utils/certStorage';
+import { downloadCVPdf } from './utils/generateCvPdf';
 
 type AppView = 'journey' | 'studio';
 type MobilePane = 'editor' | 'preview';
 
 const STORAGE_KEY = 'josafat_cv_studio_v2';
+
+const OLD_SUMMARIES_ID = [
+  'Lulusan Sarjana Teknik Informatika (S.Kom) dengan pengalaman lebih dari 5 tahun di bidang Infrastruktur TI, Network Support, dan Jaringan Telekomunikasi. Terbukti menjaga ketersediaan jaringan hingga 99,8%, memangkas waktu respons gangguan sebesar 30%, dan menyelesaikan 95% tiket sesuai SLA. Terampil dalam monitoring jaringan, pemeliharaan preventif/korektif, serta dukungan teknis lintas tim ICT.',
+  'Sarjana Komputer (S.Kom) dengan pengalaman hampir 10 tahun (2016–2026) di bidang Infrastruktur TI, Network Operations (TOC), dan Jaringan Telekomunikasi (BTS, RF, & FTTH). Berpengalaman menjaga ketersediaan infrastruktur jaringan on-site (Router, Switch, Microwave, Radio Komunikasi) hingga 99,8% uptime, memangkas waktu respons gangguan 30%, serta menyelesaikan 95% trouble ticket sesuai SLA. Teruji dalam instalasi & commissioning BTS, optimasi RF, pelaporan RCA/SSV/ATP (akurasi 99,80%), serta koordinasi tim proyek swap (98% tepat waktu).',
+];
+
+const OLD_SUMMARIES_EN = [
+  'B.Sc. in Informatics Engineering (S.Kom) with over 5 years of hands-on experience in IT Infrastructure, Network Support, and Telecommunications Networks. Proven track record of maintaining 99.8% network uptime, reducing incident response times by 30%, and resolving 95% of trouble tickets within SLA. Skilled in network monitoring, preventive/corrective maintenance, and cross-team ICT support.',
+  'Bachelor of Computer Science (S.Kom) with nearly 10 years of experience (2016–2026) across IT Infrastructure, Network Operations (TOC), and Telecommunications Engineering (BTS, RF, & FTTH). Proven track record maintaining on-site network infrastructure (Routers, Switches, Microwave, Radio) at 99.8% uptime, reducing incident response latency by 30%, and resolving 95% of trouble tickets within SLA. Experienced in BTS commissioning, RF optimization, RCA/SSV/ATP reporting (99.80% accuracy), and swap project coordination (98% on-time delivery).',
+];
 
 function loadInitialCV(): CVData {
   try {
@@ -25,6 +36,14 @@ function loadInitialCV(): CVData {
     const parsed = JSON.parse(raw) as CVData;
     if (!parsed || !parsed.fullName || !Array.isArray(parsed.experiences)) {
       return PORTFOLIO_CV_DATA;
+    }
+    if (parsed.summary) {
+      if (OLD_SUMMARIES_ID.includes(parsed.summary.id)) {
+        parsed.summary.id = PORTFOLIO_CV_DATA.summary.id;
+      }
+      if (OLD_SUMMARIES_EN.includes(parsed.summary.en)) {
+        parsed.summary.en = PORTFOLIO_CV_DATA.summary.en;
+      }
     }
     return parsed;
   } catch {
@@ -82,6 +101,10 @@ export default function App() {
     if (file) {
       await handleUploadCertFile(cert.id, file);
     }
+  };
+
+  const handleDownloadPdf = () => {
+    downloadCVPdf(cvData, lang, template);
   };
 
   const handlePrint = () => {
@@ -192,10 +215,10 @@ export default function App() {
           <div className="flex items-center shrink-0">
             <button
               type="button"
-              onClick={handlePrint}
+              onClick={handleDownloadPdf}
               className="inline-flex items-center gap-2 px-5 py-2 text-xs font-bold text-white bg-[#2563EB] hover:bg-[#0F2A5C] rounded-full transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <Printer className="w-3.5 h-3.5" />
+              <Download className="w-3.5 h-3.5" />
               {lang === 'id' ? 'Unduh CV' : 'Download CV'}
             </button>
           </div>
@@ -304,6 +327,14 @@ export default function App() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0F2A5C] bg-white border border-[#CBD5E1] hover:border-[#2563EB] rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+              >
+                <Printer className="w-3.5 h-3.5" />
+                {lang === 'id' ? 'Cetak' : 'Print'}
+              </button>
+              <button
+                type="button"
                 onClick={handleCopyPlainText}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#0F2A5C] bg-white border border-[#CBD5E1] hover:border-[#2563EB] rounded-lg transition-colors whitespace-nowrap shrink-0 cursor-pointer"
               >
@@ -342,7 +373,7 @@ export default function App() {
                 lang={lang}
                 certFiles={certFiles}
                 onChangeLang={setLang}
-                onPrintCV={handlePrint}
+                onPrintCV={handleDownloadPdf}
                 onOpenEditor={() => {
                   setView('studio');
                   setMobilePane('editor');
@@ -397,8 +428,8 @@ export default function App() {
           </span>
           <span>
             {lang === 'id'
-              ? 'Klik Unduh CV untuk mencetak atau menyimpan CV format A4 (PDF).'
-              : 'Click Download CV to print or save your A4 CV as PDF.'}
+              ? 'Klik Unduh CV untuk langsung mengunduh file CV format A4 (PDF).'
+              : 'Click Download CV to directly download your A4 CV as PDF.'}
           </span>
         </div>
       </footer>

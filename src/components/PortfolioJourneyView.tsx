@@ -445,13 +445,13 @@ export function PortfolioJourneyView({
                 </div>
 
                 {/* Floating Tech Chips */}
-                <div className="hidden sm:block absolute -top-3 right-4 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
-                  Mikrotik
-                </div>
-                <div className="hidden sm:block absolute top-14 -left-7 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
+                <div className="hidden sm:block absolute -top-4 left-4 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
                   Huawei U2000
                 </div>
-                <div className="hidden sm:block absolute bottom-28 -right-6 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
+                <div className="hidden sm:block absolute -top-4 right-4 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
+                  Mikrotik
+                </div>
+                <div className="hidden sm:block absolute bottom-24 -right-6 px-3.5 py-1.5 rounded-full bg-white text-[#0F2A5C] text-xs font-bold shadow-[0_10px_24px_rgba(15,42,92,0.16)] border border-[#E2E8F0]">
                   Fortinet
                 </div>
               </div>

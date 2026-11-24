@@ -13,8 +13,8 @@ export const PORTFOLIO_CV_DATA: CVData = {
   linkedin: 'https://www.linkedin.com/in/josafat-ambarita',
   portfolioUrl: '',
   summary: {
-    id: 'Lulusan Sarjana Teknik Informatika (S.Kom) dengan pengalaman lebih dari 5 tahun di bidang Infrastruktur TI, Network Support, dan Jaringan Telekomunikasi. Terbukti menjaga ketersediaan jaringan hingga 99,8%, memangkas waktu respons gangguan sebesar 30%, dan menyelesaikan 95% tiket sesuai SLA. Terampil dalam monitoring jaringan, pemeliharaan preventif/korektif, serta dukungan teknis lintas tim ICT.',
-    en: 'B.Sc. in Informatics Engineering (S.Kom) with over 5 years of hands-on experience in IT Infrastructure, Network Support, and Telecommunications Networks. Proven track record of maintaining 99.8% network uptime, reducing incident response times by 30%, and resolving 95% of trouble tickets within SLA. Skilled in network monitoring, preventive/corrective maintenance, and cross-team ICT support.',
+    id: 'Lulusan Teknik Informatika dengan pengalaman lebih dari 5 tahun di bidang Infrastruktur TI, Network Support, dan Jaringan Telekomunikasi. Berpengalaman dalam melakukan monitoring jaringan, troubleshooting hardware dan software, pemeliharaan perangkat jaringan, serta memberikan dukungan teknis kepada tim ICT dan pengguna. Berhasil menjaga ketersediaan jaringan hingga 99,8% dan menyelesaikan 95% tiket sesuai SLA. Memiliki kemampuan analitis yang baik, cepat beradaptasi, serta siap mengembangkan karier di bidang IT Infrastructure, Network Engineer, maupun IT Support.',
+    en: 'Informatics Engineering graduate with over 5 years of experience in IT Infrastructure, Network Support, and Telecommunications Networks. Experienced in network monitoring, hardware and software troubleshooting, network equipment maintenance, and providing technical support to ICT teams and end users. Proven track record maintaining network availability up to 99.8% and resolving 95% of tickets within SLA. Possesses strong analytical skills, adapts quickly, and is ready to grow a career in IT Infrastructure, Network Engineering, and IT Support.',
   },
   experiences: [
     {

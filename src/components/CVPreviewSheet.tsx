@@ -132,37 +132,6 @@ export function CVPreviewSheet({ data, lang, template }: CVPreviewSheetProps) {
               </section>
             )}
 
-            {/* Key Projects */}
-            {data.projects.length > 0 && (
-              <section>
-                <h2 className="font-serif text-[15px] font-semibold text-slate-950 border-b border-slate-200 pb-1.5 mb-4">
-                  {t.projects}
-                </h2>
-                <div className="space-y-4">
-                  {data.projects.map((proj) => (
-                    <div key={proj.id} className="print-avoid-break">
-                      <div className="flex items-baseline justify-between gap-4">
-                        <h3 className="text-[13.5px] font-semibold text-slate-900">
-                          {proj.name}
-                          {proj.subtitle[lang] ? ` — ${proj.subtitle[lang]}` : ''}
-                        </h3>
-                        {proj.tech.length > 0 && (
-                          <span className="text-[11.5px] font-mono text-slate-500 whitespace-nowrap shrink-0">
-                            {proj.tech.join(' · ')}
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-1 text-[12.5px] leading-relaxed text-slate-700">
-                        {proj.solution[lang]}
-                      </p>
-                      <div className="mt-1 text-[11.5px] text-slate-500">
-                        {t.users}: {proj.users[lang]} · {t.role}: {proj.role[lang]}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
           </div>
 
           {/* Secondary Column */}
@@ -308,40 +277,6 @@ export function CVPreviewSheet({ data, lang, template }: CVPreviewSheetProps) {
                         <li key={idx}>{bullet}</li>
                       ))}
                     </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Key Projects */}
-        {data.projects.length > 0 && (
-          <section>
-            <h2 className="text-[13px] font-bold tracking-wide text-slate-950 border-b border-slate-200 pb-1 mb-3">
-              {t.projects}
-            </h2>
-            <div className="space-y-3.5">
-              {data.projects.map((proj) => (
-                <div key={proj.id} className="print-avoid-break">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="text-[13px] font-semibold text-slate-900">
-                      {proj.name}
-                      {proj.subtitle[lang] ? ` — ${proj.subtitle[lang]}` : ''}
-                    </h3>
-                    {proj.tech.length > 0 && (
-                      <span className="text-[11.5px] font-mono text-slate-600 whitespace-nowrap shrink-0">
-                        {proj.tech.join(', ')}
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-[12.5px] leading-relaxed text-slate-700">
-                    {proj.solution[lang]}
-                  </p>
-                  {proj.features[lang].length > 0 && (
-                    <p className="mt-1 text-[11.5px] text-slate-600">
-                      {proj.features[lang].join(' · ')}
-                    </p>
                   )}
                 </div>
               ))}
